@@ -1,5 +1,7 @@
 module Week1 where
 
+import Data.Char;
+
 --Type Declaration and Operations
 descomponer:: Float -> (Integer,Integer)
 descomponer x = (truncate x, truncate(x*100) - truncate x *100)
@@ -30,3 +32,9 @@ listaTuplas =  [(x,y)| x <- [1..3], y<- [1..2]]
 --Exercise With Lists
 factorsOfNumber::Integer->[Integer]
 factorsOfNumber num = [x|x<-[1..num],num `mod` x == 0]
+
+countUppercase::String->Int
+countUppercase arr = length [x|x<-arr,isUpper x]
+
+invertCase::String->String
+--invertCase str = 

@@ -21,3 +21,12 @@ listaParesHasta x = [0,2..x]
 listaInfinita = [1,4..]
 
 invertirLista x= reverse x
+
+--Lists By Comprehension
+listaCuadradosHasta num = [x*x|x<-[1..num]]
+
+listaTuplas =  [(x,y)| x <- [1..3], y<- [1..2]]
+
+--Exercise With Lists
+factorsOfNumber::Integer->[Integer]
+factorsOfNumber num = [x|x<-[1..num],num `mod` x == 0]

@@ -26,3 +26,15 @@ countUppercaseRecursive(x:xs)
  
 ejer1::((String,Int),(String,Int),(String,Int))->(String,String,String)
 ejer1 ((s1,_),(s2,_),(s3,_)) = (s1,s2,s3)
+
+ejer2::[Int]->Bool
+ejer2 (x1: x2:x3:x4:xs) = (x1+x2+x3+x4)<10
+ejer2 _ = False
+
+ejer3::String->String
+ejer3 [] = "No se ha introducido una frase" --Failsafe in case of empty array
+ejer3 s = "La primera letra de la frase '" ++s++ "' es '"++[head s]++ "' y la ultima letra es '"++[last s] 
+--We make those characters a list so we can concat a string with another string (remember String = [Char])
+
+ejer4::String->Char->Int
+ejer4 str c = length [x |x<-str,x==c]

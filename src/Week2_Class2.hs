@@ -57,9 +57,24 @@ ternas::[Int]->[Int]->[(Int,Int,Int)]
 ternas [] _ = []
 ternas _ [] = []
 ternas (x:xs) (y1:y2:ys) = (x,y1,y2):ternas xs ys
-ternas (x:xs) (y:ys) = []
+--Ugly way: ternas (x:xs) (y:ys) = []
+ternas _ [y] = []
 
 
+--{
+-- In: [1,2,3,1,5,4,2,3]
+-- Out: [(1,0),(2,1),(3,2),(5,4),(4,5)]
+--}
+firstAppearence::[Int]->[(Int,Int)]
+firstAppearence x = firstAppearence' x [] 0
+
+firstAppearence'::[Int]->[Int]->Int->[(Int,Int)]
+firstAppearence' [] _ _ = []
+firstAppearence' (x:xs) vistos iter = 
+    if (not(numInList vistos x)) then
+        (x,iter):(firstAppearence' xs (x:vistos) (iter+1))
+    else 
+        firstAppearence' xs vistos (iter+1)
 
 
 

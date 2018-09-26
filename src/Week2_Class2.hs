@@ -41,14 +41,23 @@ invertList::[Char]->[Char]
 invertList [] = []
 invertList x = last x:invertList(init x)
 
-numInList::Int->[Int]->Bool
-numInList _ [] = False
-numInList x (y:ys) = (x==y) || (numInList x ys)
+numInList::[Int]->Int->Bool
+numInList [] _ = False
+numInList (y:ys) x = (x==y) || (numInList ys x)
 
 replaceNum::Int->Int->[Int]->[Int]
 replaceNum _ _ [] = []
-replaceNum x y (n:ns) = 
-    if (x==n) then (y:replaceNum x y ns) else n:replaceNum x y ns
+replaceNum x y (n:ns) = if (x==n) then (y:replaceNum x y ns) else (n:replaceNum x y ns)
+
+--{
+-- In: [1,2,3] [4,5,6,7,8,9,10,11]
+-- Out: [(1,4,5),(2,6,7),(3,8,9)]
+--}
+ternas::[Int]->[Int]->[(Int,Int,Int)]
+ternas [] _ = []
+ternas _ [] = []
+ternas (x:xs) (y1:y2:ys) = (x,y1,y2):ternas xs ys
+ternas (x:xs) (y:ys) = []
 
 
 

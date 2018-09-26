@@ -71,11 +71,23 @@ firstAppearence x = firstAppearence' x [] 0
 firstAppearence'::[Int]->[Int]->Int->[(Int,Int)]
 firstAppearence' [] _ _ = []
 firstAppearence' (x:xs) vistos iter = 
-    if (not(numInList vistos x)) then
+    if not(numInList vistos x) then
         (x,iter):(firstAppearence' xs (x:vistos) (iter+1))
     else 
         firstAppearence' xs vistos (iter+1)
-
+        
+        
+--{
+-- Count Sequences of Consecutive Zeros
+-- In: [0,1,2,0,0,4,5,6,0,0,0,7,6,0,5,6]
+-- Out: 4
+--}
+consecutiveZeros::[Int]->Int
+consecutiveZeros [] = 0
+consecutiveZeros (0:x:xs)
+consecutiveZeros (x1:0:xs) = 
+    if (x==0) then consecutiveZeros (x2:xs) 
+    else 1+ consecutiveZeros (x2:xs)
 
 
 

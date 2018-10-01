@@ -84,10 +84,10 @@ firstAppearence' (x:xs) vistos iter =
 --}
 consecutiveZeros::[Int]->Int
 consecutiveZeros [] = 0
-consecutiveZeros (0:x:xs)
-consecutiveZeros (x1:0:xs) = 
-    if (x==0) then consecutiveZeros (x2:xs) 
-    else 1+ consecutiveZeros (x2:xs)
+consecutiveZeros [0] = 1
+consecutiveZeros (0:0:xs) = consecutiveZeros (0:xs)
+consecutiveZeros (0:x2:xs) = 1+ consecutiveZeros (x2:xs)
+consecutiveZeros (x1:xs) = consecutiveZeros xs
 
 
 

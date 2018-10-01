@@ -88,10 +88,3 @@ consecutiveZeros [0] = 1
 consecutiveZeros (0:0:xs) = consecutiveZeros (0:xs)
 consecutiveZeros (0:x2:xs) = 1+ consecutiveZeros (x2:xs)
 consecutiveZeros (x1:xs) = consecutiveZeros xs
-
-
-
-
-
-
-

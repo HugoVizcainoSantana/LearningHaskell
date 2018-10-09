@@ -20,19 +20,16 @@ getBiggestNumbersAux array n result = getBiggestNumbersAux (drop n array) 0 (tak
 
 -- If greater than the lowest number in array, it swaps it
 swapByLowerIfGreater::Int->[Int]->[Int]
-swapByLowerIfGreater n array = if (lowestFromArray array)<n then (swap (lowestFromArray array) n array) else array
+swapByLowerIfGreater n array = if low<n then (swap low n array) else array where low = lowestFromArray array
                                                     
 swap::Int->Int->[Int]->[Int]
-swap n1 n2 (x:xs) = if (n1==x) then n2:xs
-                        else x:(swap n1 n2 xs)
-swap _ _ [] = []   
-                     
+swap n1 n2 (x:xs) = if (n1==x) then n2:xs else x:(swap n1 n2 xs)
+swap _ _ [] = []          
                     
 lowestFromArray::[Int]->Int
 lowestFromArray (x:xs) = lowestFromArrayAux xs x
 lowestFromArrayAux::[Int]->Int->Int
-lowestFromArrayAux (x:xs) return = if x<return then lowestFromArrayAux xs x
-                                    else lowestFromArrayAux xs return
+lowestFromArrayAux (x:xs) return = if x<return then lowestFromArrayAux xs x else lowestFromArrayAux xs return
 lowestFromArrayAux [] return = return
 
 -- Types and Clases (Data)

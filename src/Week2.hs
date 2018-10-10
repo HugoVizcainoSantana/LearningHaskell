@@ -38,3 +38,4 @@ ejer3 s = "La primera letra de la frase '" ++s++ "' es '"++[head s]++ "' y la ul
 
 ejer4::String->Char->Int
 ejer4 str c = length [x |x<-str,x==c]
+ejer4 str c = length [x |x<-str,x==c]

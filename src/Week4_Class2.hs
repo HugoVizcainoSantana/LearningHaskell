@@ -25,13 +25,43 @@ treeTest = Tree 45 (Tree 27 (Tree 22 EmptyTree EmptyTree) EmptyTree) (Tree 10 Em
 nodesCount::Tree a->Int
 nodesCount EmptyTree = 0
 nodesCount (Tree node left right) = 1+(nodesCount left)+(nodesCount right)
+
 --Count leafs in Tree
 leafCount::Tree a->Int
 leafCount EmptyTree = 0
 leafCount (Tree _ EmptyTree EmptyTree) = 1
 leafCount (Tree _ left right)= leafCount left + leafCount right
+
 --Height of Tree
 treeHeight::Tree a->Int
 treeHeight EmptyTree = 0
-treeHeight (Tree _ EmptyTree EmptyTree) = 1
+--Unnecesary treeHeight (Tree _ EmptyTree EmptyTree) = 1
 treeHeight (Tree _ left right)= 1 + max (treeHeight left) (treeHeight right)
+
+type BST a= Tree a
+--Insert in PROPER ORDER, AS A BINARY SEARCH TREE WOULD
+insertInBST::(Ord a)=> BST a-> a -> BST a
+insertInBST EmptyTree val = Tree val EmptyTree EmptyTree
+insertInBST (Tree node left right) val 
+	|(val<node) = (Tree node (insertInBST left val) right)
+	|otherwise = (Tree node left (insertInBST right val))
+	
+--Traverse Trees
+prefixTraversal::Tree a ->  [a]
+prefixTraversal EmptyTree = []
+prefixTraversal (Tree node left right) = node:(prefixTraversal left ++ prefixTraversal right)
+
+infixTraversal::Tree a ->   [a]
+infixTraversal EmptyTree = []
+infixTraversal (Tree node left right) = prefixTraversal left ++[node]++ prefixTraversal right
+
+postfixTraversal::Tree a -> [a]
+postfixTraversal EmptyTree = []
+postfixTraversal (Tree node left right) = prefixTraversal left ++ prefixTraversal right ++[node]
+	
+--Build Tree from array, depending on its order
+
+	
+	
+
+
